@@ -1,0 +1,139 @@
+[
+    {
+        "id": "1001",
+        "article": {
+            "title": "Нохойн хоол - Органик",
+            "category": "нохой",
+            "options": {
+                "sizes": [
+                    { "label": "Жижиг" },
+                    { "label": "Дунд" },
+                    { "label": "Том" }
+                ],
+                "colors": [
+                    { "label": "Улаан" },
+                    { "label": "Хөх" }
+                ]
+            },
+            "details": {
+                "origin": "Монгол",
+                "certification": "Органик",
+                "manufactureDate": "2023-01-15",
+                "expiryDate": "2024-01-15"
+            },
+            "price": {
+                "currency": "MNT",
+                "amount": 25000
+            }
+        },
+        "mainImage": {
+            "src": "https://example.com/dog-food.jpg"
+        },
+        "thumbnails": [
+            { "src": "https://example.com/dog-food-thumb1.jpg" },
+            { "src": "https://example.com/dog-food-thumb2.jpg" }
+        ]
+    },
+    {
+        "id": "1002",
+        "article": {
+            "title": "Муурны хоол - Шинэ жор",
+            "category": "муур",
+            "options": {
+                "sizes": [
+                    { "label": "Жижиг" },
+                    { "label": "Том" }
+                ],
+                "colors": [
+                    { "label": "Ногоон" },
+                    { "label": "Цагаан" }
+                ]
+            },
+            "details": {
+                "origin": "Орос",
+                "certification": "Хүнсний аюулгүй байдал",
+                "manufactureDate": "2022-12-01",
+                "expiryDate": "2023-12-01"
+            },
+            "price": {
+                "currency": "RUB",
+                "amount": 1800
+            }
+        },
+        "mainImage": {
+            "src": "https://example.com/cat-food.jpg"
+        },
+        "thumbnails": [
+            { "src": "https://example.com/cat-food-thumb1.jpg" },
+            { "src": "https://example.com/cat-food-thumb2.jpg" }
+        ]
+    },
+    {
+        "id": "1003",
+        "article": {
+            "title": "Загасны тэжээл - Далайн гаралтай",
+            "category": "загас",
+            "options": {
+                "sizes": [
+                    { "label": "50 гр" },
+                    { "label": "100 гр" }
+                ],
+                "colors": [
+                    { "label": "Шар" },
+                    { "label": "Цэнхэр" }
+                ]
+            },
+            "details": {
+                "origin": "Япон",
+                "certification": "ISO 9001",
+                "manufactureDate": "2023-03-01",
+                "expiryDate": "2024-03-01"
+            },
+            "price": {
+                "currency": "JPY",
+                "amount": 500
+            }
+        },
+        "mainImage": {
+            "src": "https://example.com/fish-food.jpg"
+        },
+        "thumbnails": [
+            { "src": "https://example.com/fish-food-thumb1.jpg" },
+            { "src": "https://example.com/fish-food-thumb2.jpg" }
+        ]
+    },
+    {
+        "id": "1004",
+        "article": {
+            "title": "Туулайн үрэл - Байгалийн гаралтай",
+            "category": "туулай",
+            "options": {
+                "sizes": [
+                    { "label": "1 кг" },
+                    { "label": "2 кг" }
+                ],
+                "colors": [
+                    { "label": "Хүрэн" },
+                    { "label": "Бор" }
+                ]
+            },
+            "details": {
+                "origin": "Герман",
+                "certification": "Органик баталгаажуулалт",
+                "manufactureDate": "2022-11-01",
+                "expiryDate": "2023-11-01"
+            },
+            "price": {
+                "currency": "EUR",
+                "amount": 15.99
+            }
+        },
+        "mainImage": {
+            "src": "https://example.com/rabbit-food.jpg"
+        },
+        "thumbnails": [
+            { "src": "https://example.com/rabbit-food-thumb1.jpg" },
+            { "src": "https://example.com/rabbit-food-thumb2.jpg" }
+        ]
+    }
+]
