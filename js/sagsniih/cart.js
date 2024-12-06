@@ -9,20 +9,20 @@ export default class Cart {
         let sagsString = ``;
         if (this.cart.size > 0)
             this.cart.forEach(
-                (value, key) =>
-                sagsString += `<div style="width:40ch;display:flex;flex-direction:row; justify-content:space-between;"><div>${(new Product(app.products.get(key))).renderCompact()} </div><div>${value}</div></div>`
+                (key) =>
+                sagsString += `<div>${(new Product(app.products.get(key))).renderCompact()} </div>`
             );
         return sagsString;
     }
 
 
-    addProduct(productId) {
+    addProduct(id) {
         let count = 1;
 
-        if (this.cart.has(productId))
-            count = Number(this.cart.get(productId)) + 1;
+        if (this.cart.has(id))
+            count = Number(this.cart.get(id)) + 1;
 
-        this.cart.set(productId, count);
+        this.cart.set(id, count);
         count++;
     }
 }

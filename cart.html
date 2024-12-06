@@ -8,25 +8,11 @@
     <link rel="stylesheet" href="styles/prod.css">
     <script src="/components/my-footer.js" type="module"></script>
     <script src="/components/my-header.js" type="module"></script>
-
-    // moduluudiig ashiglah heseg
-
-    <script type="module" src="./components/num-product.js"></script>
     <script>
-        const app = {};
+        const ff = {}
 
-        function changeProduct() {
-            document.getElementById("p1").setAttribute("pname", "Компьютер");
-        }
     </script>
-    <script type="module" src="./components/num-product.js"></script>
-
-    <script type="module" src="./lib/app.js"></script>
-    <script type="module">
-        export function changeProduct() {
-            document.getElementById("p1").setAttribute("pname", "Компьютер");
-        }
-    </script>
+    <script type="module" src="./js/sagsniih/app.js"></script>
 </head>
 
 <body>
@@ -45,36 +31,10 @@
                 </svg> Сагс хоослох</button>
         </aside>
         <hr>
-        <section class="product">
-            <aside id="egnee">
-                <h3>Doubly Delicious</h3>
-                <button class="delete-btn">❌</button>
-            </aside>
-            <a href="oneProduct.html">
-                <img src="images/negfood.png" alt="product">
-            </a>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <button id="increment">➕</button>
-                <span id="quantity" style="font-size: 18px; font-weight: bold;">3</span>
-                <button id="decrement">➖</button>
-            </div>
-            <p>250,000<span>₮</span></p>
-        </section>
-        <section class="product">
-            <aside id="egnee">
-                <h3>Doubly Delicious</h3>
-                <button class="delete-btn">❌</button>
-            </aside>
-            <a href="oneProduct.html">
-                <img src="images/negfood.png" alt="product">
-            </a>
-            <div">
-                <button id="increment">➕</button>
-                <span id="quantity" style="font-size: 18px; font-weight: bold;">3</span>
-                <button id="decrement">➖</button>
-            </div>
-            <p>250,000<span>₮</span></p>
-        </section>
+        <div id="cart">
+            хоосон байна.
+            
+        </div>
 
         <aside id="egneegol">
             <p>Нийт дүн: 192,000,000₮</p>
@@ -95,7 +55,7 @@
     <script>
         function setupDeleteButtons() {
             const deleteButtons = document.querySelectorAll('.delete-btn');
-            
+
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function () {
                     const productElement = button.closest('.product');
