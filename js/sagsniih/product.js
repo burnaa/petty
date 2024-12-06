@@ -1,6 +1,6 @@
 export default class Product {
     constructor(prod) {
-        this.id = prod.id;
+        this.id = prod?.id;
         this.name = prod.article.title;
         this.type = prod.article.category;
         this.size = prod.article.options.sizes.map(size => size.label);
@@ -16,14 +16,13 @@ export default class Product {
             amount: prod.article.price.amount
         };
     }
-
     render() {
         return `<div class="container">
             <ul class="jagsaah">
-                ${this.subpic.map((src, index) => `
-                    <li id="thumbnail-${this.id}-${index}">
-                        <img src="${src}" alt="Thumbnail ${index + 1}">
-                    </li>`).join('')}
+                <li id="neg"><img src="${this.subpic[0]}" alt="Thumbnail 1"></li>
+                <li id="xoyr"><img src="${this.subpic[1]}" alt="Thumbnail 2"></li>
+                <li id="gurav"><img src="${this.subpic[2]}" alt="Thumbnail 3"></li>
+                <li id="duruv"><img src="${this.subpic[3]}" alt="Thumbnail 4"></li>
             </ul>
             <div id="mainpicture">
                 <img class="big" src="${this.mainpic}" alt="Main Product Image">
@@ -35,8 +34,8 @@ export default class Product {
                     <pre>Хэмжээ</pre>
                     <form>
                         ${this.size.map((size, index) => `
-                            <input type="radio" name="choice_size" id="size${this.id}-${index}" value="${size}">
-                            <label for="size${this.id}-${index}">${size}</label>
+                            <input type="radio" name="choice_size" id="size${index + 1}">
+                            <label for="size${index + 1}">${size}</label>
                         `).join('')}
                     </form>
                 </aside>
@@ -44,8 +43,8 @@ export default class Product {
                     <pre>Өнгө</pre>
                     <form>
                         ${this.color.map((color, index) => `
-                            <input type="radio" name="choice_color" id="color${this.id}-${index}" value="${color}">
-                            <label for="color${this.id}-${index}">${color}</label>
+                            <input type="radio" name="choice_color" id="color${index + 1}">
+                            <label for="color${index + 1}">${color}</label>
                         `).join('')}
                     </form>
                 </aside>
@@ -53,92 +52,57 @@ export default class Product {
                 <p id="expire">Дуусах огноо: ${this.age[1]}</p>
                 <p id="origin">Бүтээгдэхүүний гарал: ${this.origin}</p>
                 <p id="standart">Баталгаажуулалт: ${this.certification}</p>
-                <span id="currency">${this.price.currency}</span>
-                <span id="total">${this.price.amount}</span>
+                <span id="currency">${this.price.currency}</span><span id="total">${this.price.amount}</span>
                 <br>
-                <button class="cart-button" data-id="${this.id}">🛒Сагсанд нэмэх🛒</button>
+                <button id="cart-button">🛒Сагсанд нэмэх🛒</button>
             </article>
         </div>`;
     }
 
+    // Энд 'add-to-cart' товчлуур дээр сонголтуудыг авах үйлдлийг хийж байна
     setupAddToCartButton() {
-        const buttons = document.querySelectorAll(`.cart-button[data-id="${this.id}"]`);
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const sizeElement = document.querySelector(`input[name="choice_size"]:checked`);
-                if (!sizeElement) {
-                    alert("Хэмжээг сонгоно уу.");
-                    return;
-                }
-                const size = sizeElement.value;
+        document.getElementById('cart-button').addEventListener('click', function () {
+            console.log("Clicked.");
+            // Зөвхөн сонгосон утгуудыг авах
+            const sizeElement = document.querySelector('input[name="choice_size"]:checked');
+            if (!sizeElement) {
+                alert("Хэмжээг сонгоно уу.");
+                return;
+            }
+            const size = sizeElement.value;
+            const colorElement = document.querySelector('input[name="choice_color"]:checked');
+            if (!colorElement) {
+                alert("Өнгөө сонгоно уу.");
+                return;
+            }
+            const color = colorElement.value;
 
-                const colorElement = document.querySelector(`input[name="choice_color"]:checked`);
-                if (!colorElement) {
-                    alert("Өнгөө сонгоно уу.");
-                    return;
-                }
-                const color = colorElement.value;
-
-                // app.cart.addProduct болон app.refreshCart функцийг дуудна
-                app.cart.addProduct(this.id, { size, color });
-                app.refreshCart();
-            });
+            // app.cart.addProduct болон app.refreshCart функцуудыг дуудна
+            app.cart.addProduct(this.id);
+            app.refreshCart();
         });
     }
+
 
     renderCompact() {
         return `<section class="product">
             <aside id="egnee">
                 <h3>${this.name}</h3>
-                <button class="delete-btn">❌</button>
+                <button class=delete-btn>❌</button>
             </aside>
             <a href="oneProduct.html">
-                <img src="${this.mainpic}" alt="product">
+                <img src="images/negfood.png" alt="product">
             </a>
             <div>
                 <button id="increment">➕</button>
                 <span id="quantity" style="font-size: 18px; font-weight: bold;">3</span>
                 <button id="decrement">➖</button>
             </div>
-            <p>${this.price.currency}${this.price.amount}<span>₮</span></p>
+                
+            <p>${this.price}<span>₮</span></p>
         </section>`;
     }
+
 }
 
-// JSON өгөгдөл fetch хийх
-fetch('products.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('JSON файлыг уншихад алдаа гарлаа.');
-        }
-        return response.json();
-    })
-    .then(data => {
-        // JSON датагаас Product объектууд үүсгэх
-        const products = data.map(prod => new Product(prod));
-        // Render хийх
-        const productContainer = document.getElementById('product-list');
-        products.forEach(product => {
-            productContainer.innerHTML += product.render();
-        });
-
-        // Add-to-cart товчийг идэвхжүүлэх
-        products.forEach(product => {
-            product.setupAddToCartButton();
-        });
-    })
-    .catch(error => {
-        console.error('Алдаа:', error);
-    });
-
-// Dummy app object
-const app = {
-    cart: {
-        addProduct: (id, options) => {
-            console.log(`Product ID: ${id} нэмэгдлээ. Сонголтууд:`, options);
-        }
-    },
-    refreshCart: () => {
-        console.log("Сагсыг шинэчиллээ.");
-    }
-};
+const orderHistory = new Set();
